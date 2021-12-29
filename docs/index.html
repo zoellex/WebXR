@@ -1,12 +1,161 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="WebXR - Aframe 3D World">
+        <title>WebXR - Aframe 3D World</title>
+
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     </head>
     <body>
-        <a-scene>
-            <!-- eigene Inhalte -->
-            <a-box position="0 1 -5">
-            </a-box>
-        </a-scene>
+    <a-scene>
+        <a-assets>
+            <img id="sand-texture" src="assets/texture_3.png">
+            <img id="sand-normal" src="assets/normal_3.png">
+            <img id="brick-texture" src="assets/texture_2.jpg">
+            <img id="brick-normal" src="assets/normal_2.jpg">
+            <img id="water-texture" src="assets/water-texture.png">
+            <img id="water-normal" src="assets/water.jpg">
+            <img id="sky" src="assets/sky.jpg">
+            <a-asset-item id="fishgirl" src="/assets/fishgirl/scene.gltf"></a-asset-item>
+            <a-asset-item id="fishskeleton" src="/assets/fish_skeleton/scene.gltf"></a-asset-item>
+            <a-asset-item id="rubbish" src="/assets/rubbish/scene.gltf"></a-asset-item>
+            <a-asset-item id="toxicwaste" src="/assets/toxic_waste/scene.gltf"></a-asset-item>
+            <a-asset-item id="plasticbottle" src="/assets/plastic_bottle/scene.gltf"></a-asset-item>
+            <a-asset-item id="dryfish" src="/assets/dry_fish/scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+
+        <a-entity light="type: ambient; color: #CCC"></a-entity>
+        <a-sky
+                src="#water-normal"
+                repeat="30 30"
+        ></a-sky>
+
+        <a-plane
+                src="#sand-texture"
+                repeat="60 60"
+                normal-map="#sand-normal"
+                normal-repeat="60 60"
+                rotation="-90 0 0"
+                scale="100 100 1"
+                shadow="receive: true">
+        </a-plane>
+
+        <!--<a-box
+                src="#brick-texture"
+                repeat="2 2"
+                normal-map="#brick-normal"
+                normal-repeat="2 2"
+                width="2"
+                height="2"
+                depth="2"
+                position="5 1 -5">
+        </a-box>-->
+
+        <!--<a-entity
+                repeat="2 2"
+                normal-repeat="2 2"
+                width="2"
+                height="2"
+                depth="2"
+                position="5 1 -5"
+                gltf-model="#fishgirl"
+        ></a-entity>-->
+
+        <a-entity
+                repeat="2 2"
+                normal-repeat="2 2"
+                width="1"
+                height="1"
+                depth="1"
+                position="10 5 -5"
+                rotation="0 0 0 0"
+                gltf-model="#fishskeleton"
+                shadow="cast: true"
+                animation="
+                    property: rotation;
+                    from: 0 0 0;
+                    to: 0 360 0;
+                    easing: linear;
+                    dur: 5000;
+                    loop: true;
+                "
+                animation__2="
+                    property: position;
+                    dir: alternate;
+                    to: 10 20 30;
+                    easing: linear;
+                    dur: 2500;
+                    loop: true;
+                ">
+        ></a-entity>
+
+        <a-entity
+                position="40 50 -5"
+                gltf-model="#rubbish"
+                animation__2="
+                    property: position;
+                    dir: alternate;
+                    to: 50 70 50;
+                    easing: linear;
+                    dur: 10000;
+                    loop: true;
+                "
+        ></a-entity>
+
+        <a-entity
+                repeat="2 2"
+                normal-repeat="2 2"
+                width="1"
+                height="1"
+                depth="1"
+                position="-30 0 -5"
+                rotation="0 -90 0 0"
+                gltf-model="#toxicwaste"
+                light="type: point; intensity: 0.75; distance: 50; decay: 2"
+                shadow="cast: true"
+        ></a-entity>
+
+        <a-entity
+                repeat="2 2"
+                normal-repeat="2 2"
+                width="100"
+                height="100"
+                depth="1"
+                gltf-model="#plasticbottle"
+                shadow="cast: true"
+                position="90 40 5"
+                animation="
+                    property: rotation;
+                    from: 0 0 0;
+                    to: 0 360 0;
+                    easing: linear;
+                    dur: 5000;
+                    loop: true;
+                "
+                animation__2="
+                    property: position;
+                    dir: alternate;
+                    to: 100 50 20;
+                    easing: linear;
+                    dur: 3000;
+                    loop: true;
+                "
+        ></a-entity>
+
+        <a-entity
+                repeat="60 60"
+                normal-repeat="60 60"
+                depth="1"
+                position="3 0 -5"
+                gltf-model="#dryfish"
+                shadow="cast: true"
+        ></a-entity>
+    </a-scene>
     </body>
 </html>
